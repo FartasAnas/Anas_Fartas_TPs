@@ -1,5 +1,6 @@
 package com.tp3.billingservice.entities;
 
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 import com.tp3.billingservice.model.Product;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,9 +15,13 @@ public class ProductItem{
 
     private long productID;
 
-    private double price; private double quantity;
+    private double price;
+
+    private double quantity;
 
     @ManyToOne
+    @JoinColumn(name = "productItem_id")
+    @JsonIncludeProperties(value = {"id","billingDate","customerID","customer"})
     private Bill bill;
 
     @Transient

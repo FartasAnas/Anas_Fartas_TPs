@@ -8,8 +8,14 @@ import org.springframework.cloud.gateway.discovery.DiscoveryLocatorProperties;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-@SpringBootApplication
+import java.util.Arrays;
+
+@SpringBootApplication @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*" , allowCredentials = "*")
 public class GatewayserviceApplication {
 
 	public static void main(String[] args) {

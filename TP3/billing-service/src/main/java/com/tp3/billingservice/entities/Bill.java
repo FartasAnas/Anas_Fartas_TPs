@@ -1,5 +1,6 @@
 package com.tp3.billingservice.entities;
 
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 import com.tp3.billingservice.model.Customer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,7 +17,8 @@ public class Bill {
 
     private Date billingDate;
 
-    @OneToMany
+    @OneToMany(targetEntity=ProductItem.class,cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIncludeProperties(value = {"id","productID","price","quantity","product"})
     private Collection<ProductItem> productItems;
 
     private Long customerID;

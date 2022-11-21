@@ -8,6 +8,7 @@ import com.tp3.billingservice.model.Customer;
 import com.tp3.billingservice.model.Product;
 import com.tp3.billingservice.repositories.BillRepository;
 import com.tp3.billingservice.repositories.ProductItemRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,11 +16,12 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.hateoas.PagedModel;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 
 @SpringBootApplication
-@EnableFeignClients
+@EnableFeignClients @Slf4j
 public class BillingServiceApplication {
 
 	public static void main(String[] args) {
@@ -39,8 +41,8 @@ public class BillingServiceApplication {
 				ProductItem productItem=new ProductItem();
 				productItem.setPrice(product.getPrice());
 				productItem.setQuantity(1+new Random().nextInt(100));
-				productItem.setBill(bill);
 				productItem.setProductID(product.getId());
+				productItem.setBill(bill);
 				productItemRepository.save(productItem);
 			});
 		};

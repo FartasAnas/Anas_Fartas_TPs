@@ -7,8 +7,8 @@ import java.util.Date;
 @Projection(name = "fullOrder",types = Bill.class)
 public interface billProjection {
     Long getId();
-    Date billingDate();
-    Long CustomerID();
+    Date getBillingDate();
+    Long getCustomerID();
 
 
 }
