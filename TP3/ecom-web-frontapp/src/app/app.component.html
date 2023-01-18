@@ -9,18 +9,38 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/products">Products</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/customers">Customers</a>
+        <li class="nav-item" >
+          <a class="nav-link" routerLink="/customers" *ngIf="securityService.kcService.getUserRoles(true).includes('MANAGER')">Customers</a>
         </li>
+<!--        <li class="nav-item">-->
+<!--          <a class="nav-link" href="javascript:void(0)">Link</a>-->
+<!--        </li>-->
+<!--        <li class="nav-item dropdown">-->
+<!--          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Dropdown</a>-->
+<!--          <ul class="dropdown-menu">-->
+<!--            <li><a class="dropdown-item" href="#">Link</a></li>-->
+<!--            <li><a class="dropdown-item" href="#">Another link</a></li>-->
+<!--            <li><a class="dropdown-item" href="#">A third link</a></li>-->
+<!--          </ul>-->
+<!--        </li>-->
+      </ul>
+      <ul class="navbar-nav float-end">
         <li class="nav-item">
-          <a class="nav-link" href="javascript:void(0)">Link</a>
+          <a class="nav-link" *ngIf="securityService.profile;else loginTemplate">
+            <a>Welcome {{securityService.profile.firstName}} {{securityService.profile.lastName}}</a>
+          </a>
+          <ng-template #loginTemplate>
+            <a class="btn nav-link" aria-current="page" (click)="login()">Login</a>
+          </ng-template>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Dropdown</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Link</a></li>
-            <li><a class="dropdown-item" href="#">Another link</a></li>
-            <li><a class="dropdown-item" href="#">A third link</a></li>
+        <li class="nav-item dropdown" *ngIf="securityService.profile">
+
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown" >
+            <li><a class="dropdown-item" (click)="onLogout()" >Logout</a></li>
+            <li><a class="dropdown-item" href="#">Profile</a></li>
           </ul>
         </li>
       </ul>
