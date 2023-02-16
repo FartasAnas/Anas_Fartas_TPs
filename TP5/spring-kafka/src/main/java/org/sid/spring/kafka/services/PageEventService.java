@@ -8,6 +8,7 @@ import org.apache.kafka.streams.kstream.Materialized;
 import org.apache.kafka.streams.kstream.TimeWindows;
 import org.sid.spring.kafka.entities.PageEvent;
 import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Service;
 
 import java.time.Duration;
 import java.util.Date;
@@ -15,7 +16,7 @@ import java.util.Random;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
-
+@Service
 public class PageEventService {
     @Bean
     public Consumer<PageEvent> pageEventConsumer()
